@@ -40,13 +40,16 @@ function validarPrograma(contenidoArchivo){
             if(simbolos[i]===caracter){
                 estadoActual = parseInt(tablaCSV[estadoActual+1][i].substring(1));
                 console.log(`Caracter ${caracter}, Estado actual: q${estadoActual}`);
+                document.getElementById("salida").innerText = document.getElementById("salida").innerText + `Caracter ${caracter}, Estado actual: q${estadoActual}`+"\n"
             }
         }
     });
     if(estadoActual==194){
         console.log("Su programa es valido! :D");
+        document.getElementById("salida").innerText = document.getElementById("salida").innerText +"Su programa es valido! :D";
     }else{
         console.log("Su programa no es valido! :c");
+        document.getElementById("salida").innerText = document.getElementById("salida").innerText +"Su programa no es valido! :c";
     }
 }
 
