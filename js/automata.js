@@ -1,5 +1,7 @@
 var tablaCSV=[];
 let programaArchivo= document.getElementById('programa');
+let resultadoElem= document.getElementById('resultado');
+
 
 $(document).ready(function() {
     $.ajax({
@@ -23,7 +25,7 @@ programaArchivo.addEventListener('change', function() {
     var archivo=new FileReader(); 
     let contenidoArchivo="";
     archivo.onload=function(){ 
-        document.getElementById('salida').textContent=archivo.result; 
+        document.getElementById('cotenido-archivo').textContent=archivo.result; 
         contenidoArchivo= archivo.result;
         validarPrograma(contenidoArchivo);
     }       
@@ -40,17 +42,19 @@ function validarPrograma(contenidoArchivo){
             if(simbolos[i]===caracter){
                 estadoActual = parseInt(tablaCSV[estadoActual+1][i].substring(1));
                 console.log(`Caracter ${caracter}, Estado actual: q${estadoActual}`);
-                document.getElementById("salida").innerText = document.getElementById("salida").innerText + `Caracter ${caracter}, Estado actual: q${estadoActual}`+"\n"
+                document.getElementById("salida").innerHTML += `<b>Caracter:</b> ${caracter}, <b>Estado actual:</b> q${estadoActual}`+"\n"
             }
         }
     });
     if(estadoActual==194){
         console.log("Su programa es valido! :D");
-        document.getElementById("salida").innerText = document.getElementById("salida").innerText +"Su programa es valido! :D";
+        resultado = "<br><b>Su programa es valido! :D</b>";
     }else{
         console.log("Su programa no es valido! :c");
-        document.getElementById("salida").innerText = document.getElementById("salida").innerText +"Su programa no es valido! :c";
+        resultado = "<br><b>Su programa no es valido! :c</b>";
     }
+    resultadoElem.innerHTML=resultado;
+    //document.getElementById("salida").innerHTML +=resultado;
 }
 
 function rellenarVacios(){

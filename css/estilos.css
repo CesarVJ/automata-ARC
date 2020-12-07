@@ -1,0 +1,125 @@
+:root{
+    --color1: #eeeeee;
+    --color2: #00adb5;
+    --color3: #393e46;
+    --color4: #222831;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--color1);
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+h2{
+    margin-bottom: 1.3rem;
+}
+.cabecera{
+    padding: 0px 3%;
+    display: block;
+    background-color: var(--color1);
+    text-transform: capitalize;
+    text-shadow: 1px 2px 0.2rem var(--color3);
+    min-height: 20vh;
+}
+#logo{
+    display: block;
+}
+#logo img{
+    height: 100px;
+}
+h1{
+  display: block; 
+  text-align: center;
+}
+
+#cotenido-archivo{
+    background-color: #fff;
+    color: black;
+    min-width: 80%;
+    min-height: 15rem;
+    margin-top: 2rem;
+    padding: 1rem;
+
+}
+
+/* Estilos para la estructura general*/
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.4fr auto;
+    grid-template-areas: "principal" "proceso" "pie";
+    min-height: 80vh;
+}
+.proceso{
+    grid-area: proceso;
+    background-color: var(--color2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+    overflow-y: scroll;
+    max-height: 69vh
+}
+#salida{
+    overflow-y: scroll;
+    margin: 0px;
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+}
+main{
+    grid-area: principal;
+    padding: 5% 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer{
+    grid-area: pie;
+    text-align: center;
+    background-color: var(--color4);
+    color: #fff;
+    padding: 1rem 0px;
+}
+
+
+
+/* Vista de escritorio */
+@media screen and (min-width: 768px){
+    h2{
+        margin-bottom: 1.3rem;
+    }
+    .cabecera{
+        padding: 0px 3%;
+        display: block;
+        background-color: var(--color1);
+        min-height: 20vh;
+    }
+    #logo{
+        display: inline;
+    }
+    #logo img{
+        height: 100px;
+    }
+    h1{
+      display: inline; 
+      vertical-align: 90%;
+      margin-left: 10%;
+    }
+    
+    /* Estilos para la estructura general*/
+    .contenedor{
+        display: grid;
+        grid-template-columns: 1fr 0.3fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas: "principal  proceso" "pie  pie";
+        min-height: 80vh;
+    }
+
+}
