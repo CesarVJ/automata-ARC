@@ -2,7 +2,6 @@ var tablaCSV=[];
 let programaArchivo= document.getElementById('programa');
 let resultadoElem= document.getElementById('resultado');
 
-
 $(document).ready(function() {
     $.ajax({
         type: "GET",
@@ -12,14 +11,12 @@ $(document).ready(function() {
             leerTabla(data);
         }
     });
-
      function leerTabla(datos){
         tablaCSV= Papa.parse(datos).data;
         rellenarVacios();
         console.log(tablaCSV); 
      }
 });
-
 
 programaArchivo.addEventListener('change', function() { 
     var archivo=new FileReader(); 
@@ -34,15 +31,16 @@ programaArchivo.addEventListener('change', function() {
 
 function validarPrograma(contenidoArchivo){
     estadoActual = 0; // q0
-    let row="";
     let simbolos = tablaCSV[0]; // Cabecera de la tabla
+    let salida = document.getElementById("salida");
+    salida.innerHTML = "";
     
     [...contenidoArchivo].forEach(caracter => {
         for(let i=0;i<simbolos.length;i++){
             if(simbolos[i]===caracter){
                 estadoActual = parseInt(tablaCSV[estadoActual+1][i].substring(1));
                 console.log(`Caracter ${caracter}, Estado actual: q${estadoActual}`);
-                document.getElementById("salida").innerHTML += `<b>Caracter:</b> ${caracter}, <b>Estado actual:</b> q${estadoActual}`+"\n"
+                salida.innerHTML += `<b>Caracter:</b> ${caracter}, <b>Estado actual:</b> q${estadoActual}`+"\n"
             }
         }
     });
@@ -65,5 +63,4 @@ function rellenarVacios(){
             }
         }
     }
-
 }
