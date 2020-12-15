@@ -1,11 +1,8 @@
 var tablaCSV=[];
 let programaArchivo= document.getElementById('programa');
 let resultadoElem= document.getElementById('resultado');
-
+// La siguiente variable es para mostrar una ventana emergente de carga
 var sweet_loader = '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
-
-
-
 
 $(document).ready(function() {
     $.ajax({
@@ -18,7 +15,7 @@ $(document).ready(function() {
     });
      function leerTabla(datos){
         tablaCSV= Papa.parse(datos).data;
-        rellenarVacios();
+        rellenarVacios(); // Sustituyendo espacios vacios con el estado q164
         console.log(tablaCSV); 
      }
 });
@@ -40,10 +37,7 @@ programaArchivo.addEventListener('change', function() {
 function formatear(contenidoArchivo){
     contenidoArchivo=contenidoArchivo.replace(/ /g, "~");
     contenidoArchivo = contenidoArchivo.replace(/\n~+/g, '\n');
-    //contenidoArchivo = contenidoArchivo.replace(/\n/g, "\r\n");
     contenidoArchivo=contenidoArchivo.replace(/\n/g, "¬");
-    //contenidoArchivo=contenidoArchivo.replace(/([^\r])\n/g, "$1\r\n");
-    //console.log("Archivo: "+contenidoArchivo);
     return contenidoArchivo;
 }
 
@@ -67,16 +61,13 @@ function validarPrograma(contenidoArchivo){
         console.log("Su programa es valido! :D");
         resultado = "<br><b>Su programa es valido! :D</b>";
         fueValido = true;
-        //swal("¡Excelente!", "Su programa es valido!", "success");
     }else{
         console.log("Su programa no es valido! :c");
         resultado = "<br><b>Su programa no es valido! :c</b>";
         fueValido = false;
-        //swal("¡Aviso!", "Su programa es no es valido!", "warning");
     }
     resultadoElem.innerHTML=resultado;
     mostrarResultado(fueValido);
-    //document.getElementById("salida").innerHTML +=resultado;
 }
 
 function mostrarResultado(fueValido){
