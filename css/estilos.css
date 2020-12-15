@@ -1,24 +1,27 @@
-:root{
+:root {
     --color1: #eeeeee;
     --color2: #00adb5;
     --color3: #393e46;
     --color4: #222831;
 }
 
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
-body{
+
+body {
     background-color: var(--color1);
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
 }
-h2{
+
+h2 {
     margin-bottom: 1.3rem;
 }
-.cabecera{
+
+.cabecera {
     padding: 0px 3%;
     display: block;
     background-color: var(--color1);
@@ -26,18 +29,21 @@ h2{
     text-shadow: 1px 2px 0.2rem var(--color3);
     min-height: 20vh;
 }
-#logo{
+
+#logo {
     display: block;
 }
-#logo img{
+
+#logo img {
     height: 100px;
 }
-h1{
-  display: block; 
-  text-align: center;
+
+h1 {
+    display: block;
+    text-align: center;
 }
 
-#cotenido-archivo{
+#cotenido-archivo {
     background-color: #fff;
     color: black;
     min-width: 80%;
@@ -48,14 +54,15 @@ h1{
 }
 
 /* Estilos para la estructura general*/
-.contenedor{
+.contenedor {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 0.4fr auto;
-    grid-template-areas: "principal" "proceso" "pie";
+    grid-template-areas: "principal""proceso""pie";
     min-height: 80vh;
 }
-.proceso{
+
+.proceso {
     grid-area: proceso;
     background-color: var(--color2);
     display: flex;
@@ -66,21 +73,24 @@ h1{
     overflow-y: scroll;
     max-height: 69vh
 }
-#salida{
+
+#salida {
     overflow-y: scroll;
     margin: 0px;
     width: 100%;
     text-align: left;
     padding-left: 1rem;
 }
-main{
+
+main {
     grid-area: principal;
     padding: 5% 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-footer{
+
+footer {
     grid-area: pie;
     text-align: center;
     background-color: var(--color4);
@@ -89,36 +99,76 @@ footer{
 }
 
 
+.boton {
+    padding: 0.3rem 1.4rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    background-color: #009879;
+    color: #fff;
+    border: 0px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
 
+#cotenido-archivo {
+    border: #65d6ce 1.5px dashed;
+    border-radius: 7px;
+    -webkit-box-shadow: 8px 8px 35px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 8px 35px -25px rgba(0,0,0,0.75);
+    box-shadow: 8px 8px 35px -25px rgba(0,0,0,0.75);
+    overflow-y: scroll;
+}
+
+.sweet_loader {
+	width: 140px;
+	height: 140px;
+	margin: 0 auto;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-name: ro;
+	transform-origin: 50% 50%;
+	transform: rotate(0) translate(0,0);
+}
+@keyframes ro {
+	100% {
+		transform: rotate(-360deg) translate(0,0);
+	}
+}
 /* Vista de escritorio */
-@media screen and (min-width: 768px){
-    h2{
+@media screen and (min-width: 768px) {
+    h2 {
         margin-bottom: 1.3rem;
     }
-    .cabecera{
+
+    .cabecera {
         padding: 0px 3%;
         display: block;
         background-color: var(--color1);
         min-height: 20vh;
     }
-    #logo{
+
+    #logo {
         display: inline;
     }
-    #logo img{
+
+    #logo img {
         height: 100px;
     }
-    h1{
-      display: inline; 
-      vertical-align: 90%;
-      margin-left: 10%;
+
+    h1 {
+        display: inline;
+        vertical-align: 90%;
+        margin-left: 10%;
     }
-    
+
     /* Estilos para la estructura general*/
-    .contenedor{
+    .contenedor {
         display: grid;
         grid-template-columns: 1fr 0.3fr;
         grid-template-rows: 1fr auto;
-        grid-template-areas: "principal  proceso" "pie  pie";
+        grid-template-areas: "principal  proceso""pie  pie";
         min-height: 80vh;
     }
 

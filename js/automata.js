@@ -2,10 +2,15 @@ var tablaCSV=[];
 let programaArchivo= document.getElementById('programa');
 let resultadoElem= document.getElementById('resultado');
 
+var sweet_loader = '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
+
+
+
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "Tabla-ARC.csv",
+        url: "Tabla-ARC.csv", // Accediendo a la Matriz de trancisiones
         dataType: "text",
         success: function(data) {
             leerTabla(data);
@@ -46,6 +51,7 @@ function validarPrograma(contenidoArchivo){
     estadoActual = 0; // q0
     let simbolos = tablaCSV[0]; // Cabecera de la tabla
     let salida = document.getElementById("salida");
+    let fueValido=false;
     salida.innerHTML = "";
     
     [...contenidoArchivo].forEach(caracter => {
@@ -60,12 +66,33 @@ function validarPrograma(contenidoArchivo){
     if(estadoActual==194){
         console.log("Su programa es valido! :D");
         resultado = "<br><b>Su programa es valido! :D</b>";
+        fueValido = true;
+        //swal("¡Excelente!", "Su programa es valido!", "success");
     }else{
         console.log("Su programa no es valido! :c");
         resultado = "<br><b>Su programa no es valido! :c</b>";
+        fueValido = false;
+        //swal("¡Aviso!", "Su programa es no es valido!", "warning");
     }
     resultadoElem.innerHTML=resultado;
+    mostrarResultado(fueValido);
     //document.getElementById("salida").innerHTML +=resultado;
+}
+
+function mostrarResultado(fueValido){
+    swal.fire({
+        html: '<h4>Verificando...</h4>',
+        onRender: function() {
+            $('.swal2-content').prepend(sweet_loader);
+        }
+    });
+    swal.showLoading();
+    setTimeout(function() {
+        swal.fire({
+            icon: fueValido?'success':'warning',
+            html: fueValido?'<h4>¡Programa valido!</h4>':'<h4>¡Programa no valido!</h4>'
+        });
+    }, 1000);
 }
 
 function rellenarVacios(){
