@@ -21,13 +21,26 @@ $(document).ready(function() {
 programaArchivo.addEventListener('change', function() { 
     var archivo=new FileReader(); 
     let contenidoArchivo="";
+    let contenidoAMostrar="";
     archivo.onload=function(){ 
-        document.getElementById('cotenido-archivo').textContent=archivo.result; 
+        contenidoAMostrar=archivo.result;
+        contenidoAMostrar=contenidoAMostrar.replace(/\n/g, "<br>");
+        document.getElementById('cotenido-archivo').innerHTML=contenidoAMostrar; 
         contenidoArchivo= archivo.result;
+        contenidoArchivo= formatear(contenidoArchivo);
         validarPrograma(contenidoArchivo);
     }       
     archivo.readAsText(this.files[0]); 
 });
+function formatear(contenidoArchivo){
+    contenidoArchivo=contenidoArchivo.replace(/ /g, "~");
+    contenidoArchivo = contenidoArchivo.replace(/\n~+/g, '\n');
+    //contenidoArchivo = contenidoArchivo.replace(/\n/g, "\r\n");
+    contenidoArchivo=contenidoArchivo.replace(/\n/g, "¬");
+    //contenidoArchivo=contenidoArchivo.replace(/([^\r])\n/g, "$1\r\n");
+    //console.log("Archivo: "+contenidoArchivo);
+    return contenidoArchivo;
+}
 
 function validarPrograma(contenidoArchivo){
     estadoActual = 0; // q0
