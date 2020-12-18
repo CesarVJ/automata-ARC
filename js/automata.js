@@ -32,7 +32,7 @@ programaArchivo.addEventListener('change', function() {
         contenidoArchivo= formatear(contenidoArchivo);
         validarPrograma(contenidoArchivo);
     }       
-    archivo.readAsText(this.files[0]); 
+    archivo.readAsText(this.files[0],'ISO-8859-1'); 
 });
 function formatear(contenidoArchivo){
     contenidoArchivo=contenidoArchivo.replace(/ /g, "~");
@@ -47,8 +47,11 @@ function validarPrograma(contenidoArchivo){
     let salida = document.getElementById("salida");
     let fueValido=false;
     salida.innerHTML = "";
-    
+    console.log(simbolos);
     [...contenidoArchivo].forEach(caracter => {
+        if(caracter=='+'){
+            console.log("Signo de mas: "+caracter);
+        }
         for(let i=0;i<simbolos.length;i++){
             if(simbolos[i]===caracter){
                 estadoActual = parseInt(tablaCSV[estadoActual+1][i].substring(1));
